@@ -6,7 +6,8 @@ import { Layout } from 'antd';
 import MainContent from '../../components/admin/maincontent';
 import AdminHeader from '../../components/admin/header';
 import SideBar from '../../components/admin/siderbar';
-import { headerList } from '../../assets/data';
+import { headerList, headerListRight } from '../../assets/data';
+import { checkQuery } from '../../assets/adminhelper';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
@@ -23,7 +24,8 @@ const AdminDashboard = () => {
 	const router = useRouter();
 	useEffect(() => {
 		if (typeof router.query.page === 'string') {
-			if (!headerList.includes(router.query.page)) {
+			// if (![...headerList, ...headerListRight.map(e=>e.name)].includes(router.query.page)) 
+			if (!checkQuery(router.query)) {
 				router.push(
 					{
 						pathname: router.pathname,

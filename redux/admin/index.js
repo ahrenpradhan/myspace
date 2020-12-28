@@ -6,6 +6,8 @@ const adminSlice = createSlice({
 		userId: null,
 		page: null,
 		sideBar: null,
+		type: null,
+		option: null,
 	},
 	reducers: {
 		setUserId: (state, action) => {
@@ -20,9 +22,17 @@ const adminSlice = createSlice({
 			const { sideBar } = action.payload;
 			state.sideBar = sideBar;
 		},
+		setType: (state, action) => {
+			const { type } = action.payload;
+			state.type = type;
+		},
+		setOption: (state, action) => {
+			const { option } = action.payload;
+			state.option = option;
+		},
 	},
 });
 
-export const { setUserId, setPage, setSideBar } = adminSlice.actions;
+export const { setUserId, setPage, setSideBar, setType, setOption } = adminSlice.actions;
 
 export default adminSlice;

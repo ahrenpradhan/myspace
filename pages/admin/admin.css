@@ -30,3 +30,16 @@
 	letter-spacing: 2px;
 	cursor: pointer;
 }
+
+.header_setting_tab {
+	left: auto !important;
+	right: 0;
+}
+
+.header_setting_tab .ant-menu-sub {
+	border-top-left-radius: 0px;
+}
+
+.header_setting_tab .ant-menu-item-active{
+	background: #000c17 !important;
+}

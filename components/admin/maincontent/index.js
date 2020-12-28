@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const { Content } = Layout;
 
-const MainContent = ({ sideBar }) => {
+const MainContent = ({ sideBar, type, option }) => {
 	const [path, setPath] = useState(['admin']);
 	const router = useRouter();
 	useEffect(() => {
@@ -22,9 +22,18 @@ const MainContent = ({ sideBar }) => {
 		<Layout style={{ padding: '0 24px 24px' }}>
 			{path.length > 0 && (
 				<Breadcrumb style={{ margin: '16px 0', textTransform: 'capitalize' }}>
-					{path.concat(sideBar.filter((e) => !!e).reverse()).map((psthname) => (
-						<Breadcrumb.Item key={psthname}>{psthname}</Breadcrumb.Item>
-					))}
+					{path
+						.concat(
+							sideBar
+								? sideBar
+										.concat([type, option])
+										.filter((e) => !!e)
+										.reverse()
+								: [],
+						)
+						.map((psthname) => (
+							<Breadcrumb.Item key={psthname}>{psthname}</Breadcrumb.Item>
+						))}
 				</Breadcrumb>
 			)}
 			<Content

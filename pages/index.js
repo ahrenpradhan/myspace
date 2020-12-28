@@ -36,9 +36,11 @@ const AdminDetails = () => {
 						<Input.Password addonBefore='Password' />
 					</div>
 				</div>
-				<Button type='primary' block>
-					Login as Admin
-				</Button>
+				<Link href='/admin'>
+					<Button type='primary' block>
+						<a>Login as Admin</a>
+					</Button>
+				</Link>
 			</div>
 		</Card>
 	);
