@@ -1,0 +1,55 @@
+{    
+    "protfolio":{
+        "tabs":[
+            {
+                "name":"About Me",
+                "menus":[
+                    {
+                        "name":"Personal Details",
+                        "subMenu":[]
+                    },
+                    {
+                        "name":"Experience",
+                        "subMenu":[
+                            "Professional",
+                            "Interships",
+                            "Training"
+                        ]
+                    },
+                    {
+                        "name":"Skills",
+                        "subMenu":[]
+                    },
+                    {
+                        "name":"Achievements",
+                        "subMenu":[]
+                    },
+                    {
+                        "name":"User Details",
+                        "subMenu":[]
+                    }
+                ]
+            },
+            {
+                "name":"Projects",
+                "menu":[
+                    {
+                        "name":"Live",
+                        "subMenu":[]
+                    },
+                    {
+                        "name":"Ongoing",
+                        "subMenu":[]
+                    }
+                ]
+            },
+            {
+                "name":"Blogs",
+                "menus":[]
+            },
+            {
+                "name":"Connect",
+                "menu":[]
+            }
+        ]
+    }}
