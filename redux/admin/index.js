@@ -58,7 +58,9 @@ const adminSlice = createSlice({
 		}
 	}
 });
-console.log(adminSlice)
+// console.log(adminSlice)
+console.log('-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- ');
+console.log(process.env.MONGODB_URI);
 export const { setUserId, setPage, setSideBar, setType, setOption, getDataFromDatabase } = adminSlice.actions;
 export { getUserDetails };
 export default adminSlice;
