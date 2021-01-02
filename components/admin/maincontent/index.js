@@ -4,9 +4,12 @@ import { Layout, Breadcrumb } from 'antd';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 
+import AllContent from './content';
+import Contents from './contents';
+
 const { Content } = Layout;
 
-const MainContent = ({ sideBar, type, option }) => {
+const MainContent = ({ sideBar, type, option, page }) => {
 	const [path, setPath] = useState(['admin']);
 	const router = useRouter();
 	useEffect(() => {
@@ -21,7 +24,7 @@ const MainContent = ({ sideBar, type, option }) => {
 	return (
 		<Layout style={{ padding: '0 24px 24px' }}>
 			{path.length > 0 && (
-				<Breadcrumb style={{ margin: '16px 0', textTransform: 'capitalize' }}>
+				<Breadcrumb separator='>' style={{ margin: '16px 0' }}>
 					{path
 						.concat(
 							sideBar
@@ -32,7 +35,9 @@ const MainContent = ({ sideBar, type, option }) => {
 								: [],
 						)
 						.map((psthname) => (
-							<Breadcrumb.Item key={psthname}>{psthname}</Breadcrumb.Item>
+							<Breadcrumb.Item key={psthname}>
+								<span className='main-content-breadcrumb-item'>{psthname}</span>
+							</Breadcrumb.Item>
 						))}
 				</Breadcrumb>
 			)}
@@ -44,7 +49,8 @@ const MainContent = ({ sideBar, type, option }) => {
 					minHeight: 280,
 					overflowY: 'auto',
 				}}>
-				content
+				{/* <AllContent page={page} sideBar={sideBar} /> */}
+				<Contents />
 			</Content>
 		</Layout>
 	);

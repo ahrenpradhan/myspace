@@ -17,13 +17,17 @@ const SideBar = ({ setSideBar }) => {
 	const [queryPath, setQueryPath] = useState(null);
 	const [_menu, setMenu] = useState(null);
 	const [selectedMenu, setSelectedMenu] = useState([null, null]);
-
+	const [collapsed, setCollapsed] = useState(false);
 	const getFirstSelectedOption = () => {
 		let tempOption = _menu[0];
 		if (tempOption.subMenu.length > 0) {
 			return setSelectedMenu([tempOption.name, tempOption.subMenu[0]]);
 		}
 		return setSelectedMenu([null, tempOption.name]);
+	};
+	const onCollapse = (_collapsed) => {
+		console.log(_collapsed);
+		setCollapsed(_collapsed);
 	};
 	useEffect(() => {
 		setQueryPath(router.query.page);
@@ -42,10 +46,19 @@ const SideBar = ({ setSideBar }) => {
 			}, 500);
 		}
 	}, [_menu]);
-	useEffect(() => {setSideBar({sideBar:selectedMenu});}, [selectedMenu]);
-	// if (queryPath != null && _menu && selectedMenu[1]!=null) {
+	useEffect(() => {
+		setSideBar({ sideBar: selectedMenu });
+	}, [selectedMenu]);
+	if (!_menu) {
+		return <></>;
+	}
 	return (
-		<Sider width={!!_menu ? 200 : 0} className='site-layout-background'>
+		<Sider
+			collapsible
+			collapsed={collapsed}
+			onCollapse={onCollapse}
+			width={!!_menu ? 200 : 0}
+			className='site-layout-background'>
 			<Menu
 				theme='dark'
 				mode='inline'
@@ -57,11 +70,15 @@ const SideBar = ({ setSideBar }) => {
 					// selectedMenu[1] != null &&
 					_menu.map((m) =>
 						m.subMenu.length == 0 ? (
-							<Item onClick={() => setSelectedMenu([null, m.name])} key={m.name} style={{ marginTop: 0 }}>
+							<Item
+								onClick={() => setSelectedMenu([null, m.name])}
+								key={m.name}
+								icon={m?.icon}
+								style={{ marginTop: 0 }}>
 								{m.name}
 							</Item>
 						) : (
-							<SubMenu key={m.name} title={m.name}>
+							<SubMenu key={m.name} icon={m?.icon} title={m.name}>
 								{m.subMenu.map((s) => (
 									<Item onClick={() => setSelectedMenu([s, m.name])} key={s} style={{ marginTop: 0 }}>
 										{s}

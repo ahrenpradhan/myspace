@@ -12,8 +12,8 @@
 }
 
 .site-layout-background {
-	background: #fff !important;
-	transition: 0.5s;
+	/* background: #fff !important; */
+	transition: 0.2s;
 }
 
 .header {
@@ -42,4 +42,30 @@
 
 .header_setting_tab .ant-menu-item-active{
 	background: #000c17 !important;
+}
+
+.main-content-breadcrumb-item{
+	text-transform: capitalize !important;
+	transition: 1s;
+	opacity: 1;
+}
+
+.admin-input-form {
+	margin: auto 20%;
+}
+.hover-icon:hover{
+	transition:0.5s;
+	fill:white
+}
+
+@media only screen and (max-width: 900px){
+	.admin-input-form{
+		margin: auto 4%;
+	}
+}
+
+@media only screen and (max-width: 500px){
+	.admin-input-form{
+		margin: auto;
+	}
 }
