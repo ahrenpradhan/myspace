@@ -13,7 +13,7 @@ const layout = {
 		span: 16,
 	},
 };
-const Contents = ({ page, sideBar }) => {
+const Contents = ({ page, sideBar, userDetails }) => {
 	if (!page) {
 		return <></>;
     }
@@ -58,6 +58,12 @@ const Contents = ({ page, sideBar }) => {
 	}
 	return (
 		<div className='admin-input-form'>
+			{userDetails && (
+				<>
+					<span>{`First name : ${userDetails.firstname}`}</span>
+					<span>{`Last name : ${userDetails.lastname}`}</span>
+				</>
+			)}
 			<Form {...layout} onFinish={onFinish} validateMessages={validationMessage}>
 				{currentOptions &&
 					currentOptions.map((option) => (

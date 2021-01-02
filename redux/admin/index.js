@@ -9,6 +9,7 @@ const getUserDetails = createAsyncThunk(
 	'user/fetchEveryStatus',
 	async (userId, thunkAPI) => {
 		const response = await axios.get('/api/details');
+		console.log(response.data.data[0])
 		return response.data.data[0];
 	}
 )
