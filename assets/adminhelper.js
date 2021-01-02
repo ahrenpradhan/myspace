@@ -1,7 +1,7 @@
 import * as Data from './data';
 
 const getValidatePathnameParams = (onlyRight = false) => {
-    return !!onlyRight
+	return !!onlyRight
 		? [...Data.headerListRight.map((e) => e.name)]
 		: [...Data.headerList, ...Data.headerListRight.map((e) => e.name)];
 };
@@ -34,7 +34,7 @@ export const checkQuery = (query, onlyRight = false) => {
 	// console.log(query);
 	let params = Object.keys(query).filter((e) => e);
 	for (let p in params) {
-		if (!allQueryValidation[params[p]].includes(query[params[p]])) {
+		if (!!allQueryValidation[params[p]] && !allQueryValidation[params[p]].includes(query[params[p]])) {
 			return false;
 		}
 	}

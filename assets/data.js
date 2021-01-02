@@ -195,4 +195,5 @@ const menuOptions = [
 		],
 	},
 ];
+
 export { menuOptions, headerList, headerTabException, headerListRight };

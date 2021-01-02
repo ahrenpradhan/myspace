@@ -13,22 +13,17 @@ const layout = {
 		span: 16,
 	},
 };
-const Contents = ({ page, sideBar, userDetails }) => {
+const Contents = ({ page, sideBar, userDetails, credentials }) => {
 	if (!page) {
 		return <></>;
-    }
+	}
 	const [tempOption, setTempOption] = useState(null);
 	const [displayContent, setDisplayContent] = useState(false);
 	const [currentOptions, setCurrentOptions] = useState(false);
-    const [validationMessage, setValidationMessages] = useState({});
-    const [userData, setUserData] = useState({});
-	// const getData = async () => {
-    //     const {data} = await axios.get('/api/details');
-    //     console.log(data.data[0])
-    //     setUserData(data.data[0]);
-	// };
-    useEffect(() => {
-        // getData();
+	const [validationMessage, setValidationMessages] = useState({});
+	const [userData, setUserData] = useState({});
+	useEffect(() => {
+		// getData();
 		if (sideBar[1]) {
 			setTempOption(
 				menuOptions
@@ -51,8 +46,8 @@ const Contents = ({ page, sideBar, userDetails }) => {
 		}
 	}, [tempOption]);
 	const onFinish = (values) => {
-		console.log(values);
-    };
+		console.log({ ...values.user, userId: credentials._id });
+	};
 	if (!displayContent) {
 		return <>Visibility turned off</>;
 	}

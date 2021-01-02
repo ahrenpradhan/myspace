@@ -68,7 +68,7 @@ const HeaderMenuRight = (router) =>
 			),
 	);
 
-const AdminHeader = ({ setPage, setType, setOption, getUserDetails }) => {
+const AdminHeader = ({ setPage, setType, setOption, getUserDetails, credentials }) => {
 	const router = useRouter();
 	const [queryPath, setQueryPath] = useState();
 	useEffect(() => {
