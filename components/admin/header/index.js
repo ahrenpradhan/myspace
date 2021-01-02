@@ -5,7 +5,7 @@ import { headerList, headerTabException, headerListRight } from '../../../assets
 import { checkQuery } from '../../../assets/adminhelper';
 
 import { connect } from 'react-redux';
-import { setPage, setType, setOption } from '../../../redux/admin';
+import { setPage, setType, setOption, getUserDetails } from '../../../redux/admin';
 
 const { Header } = Layout;
 
@@ -68,7 +68,7 @@ const HeaderMenuRight = (router) =>
 			),
 	);
 
-const AdminHeader = ({ setPage, setType, setOption }) => {
+const AdminHeader = ({ setPage, setType, setOption, getUserDetails }) => {
 	const router = useRouter();
 	const [queryPath, setQueryPath] = useState();
 	useEffect(() => {
@@ -82,6 +82,9 @@ const AdminHeader = ({ setPage, setType, setOption }) => {
 			setOption({ option: null });
 		}
 	}, [router]);
+	useEffect(() => {
+		getUserDetails();
+	}, []);
 	return (
 		<Header className='header'>
 			{/* <div className='logo' /> */}
@@ -133,6 +136,6 @@ const mapStateToProps = (state) => ({
 	...state,
 });
 
-const mapDispatch = { setPage, setType, setOption };
+const mapDispatch = { setPage, setType, setOption, getUserDetails };
 
 export default connect(mapStateToProps, mapDispatch)(AdminHeader);

@@ -1,9 +1,8 @@
-import dbConnect from '../../utils/dbConnect';
-import { Details } from '../../models';
+import dbConnect from '../../../utils/dbConnect';
+import { Details } from '../../../models';
 
 export default async function handler(req, res) {
 	const { method } = req;
-	console.log(req);
 	await dbConnect();
 	switch (method) {
 		case 'GET':
