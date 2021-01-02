@@ -1,4 +1,4 @@
-import UserDetailContent from './userDetailContent';
+import UserDetailContent from './userdetailcontent';
 
 
 const AboutContent = ({ sideBar }) => {
