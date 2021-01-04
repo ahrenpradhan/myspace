@@ -1,5 +1,7 @@
 import { UserOutlined, DatabaseOutlined, CrownOutlined } from '@ant-design/icons';
 // icon={<TeamOutlined />}
+import localstore from '../utils/localstore';
+
 const headerList = ['home', 'about', 'projects', 'blogs', 'contact'];
 
 const headerListRight = [
@@ -23,6 +25,12 @@ const headerListRight = [
 				link: {
 					pathname: '/',
 				},
+				operation: () => {
+					const localData = localstore.get('credentials');
+					if (!localData?.remember) {
+						localstore.remove('credentials');
+					}
+				}
 			},
 		],
 	},

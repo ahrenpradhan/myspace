@@ -57,6 +57,9 @@ const HeaderMenuRight = (router) =>
 							<Menu.Item
 								key={subMenu.name}
 								onClick={() => {
+									if (subMenu['operation']) {
+										subMenu['operation']();
+									}
 									router.push(subMenu[subMenu.type], undefined, { shallow: true });
 								}}
 								style={{ textTransform: 'capitalize' }}>
@@ -72,6 +75,11 @@ const AdminHeader = ({ setPage, setType, setOption, getUserDetails, credentials 
 	const router = useRouter();
 	const [queryPath, setQueryPath] = useState();
 	useEffect(() => {
+		if (credentials == null) {
+			router.push({
+				pathname: '/',
+			});
+		}
 		setQueryPath(router.query.page);
 		setPage({ page: router.query.page });
 		if (checkQuery(router.query, true)) {

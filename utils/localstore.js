@@ -1,7 +1,7 @@
 var store = require('store');
 
 const localstore = () => {
-    const localKey = process.env.REACT_APP_LOCALSTORAGEKEY;
+    const localKey = process.env.NEXT_PUBLIC_LOCALSTORAGEKEY;
     return {
         set: (key, data) => {
             console.log(localKey + key);

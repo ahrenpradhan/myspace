@@ -48,9 +48,12 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 		username: '',
 		password: '',
 	});
+	const [disabled, setDisabled] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const key = 'updatable';
 	const signIn = async () => {
-		message.loading({ content: 'Logging in', key, duration: 0 });
+		// message.loading({ content: 'Logging in', key, duration: 0 });
+		setLoading(true);
 		const { data } = await axios({
 			url: '/api/user',
 			method: 'GET',
@@ -58,9 +61,8 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 				...details,
 			},
 		});
-		console.log(data);
 		if (data.success) {
-			message.success({ content: 'Success!', key, duration: 2 });
+			// message.success({ content: 'Success!', key, duration: 2 });
 			router.push({
 				pathname: '/admin',
 				query: {
@@ -69,10 +71,12 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 			});
 		} else {
 			message.warning({ content: data.data, key, duration: 2 });
+			setLoading(false);
 		}
 	};
 	const createUser = async () => {
 		message.loading({ content: 'Creating Account', key, duration: 0 });
+		setLoading(true);
 		const { data } = await axios({
 			url: '/api/user',
 			method: 'POST',
@@ -86,7 +90,7 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 		} else {
 			message.success({ content: data.data, key, duration: 2 });
 		}
-		console.log(data.data);
+		setLoading(false);
 	};
 	const handleButton = () => {
 		if (createAdmin) {
@@ -95,6 +99,13 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 			signIn();
 		}
 	};
+	useEffect(() => {
+		if (details.username.length >= 4 && details.password.length >= 4) {
+			setDisabled(false);
+		} else {
+			setDisabled(true);
+		}
+	}, [details]);
 	return (
 		<Card className={styles.card} bodyStyle={{ height: '100%' }}>
 			<div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
@@ -118,12 +129,19 @@ const AdminDetails = ({ setCreateAdmin, createAdmin }) => {
 						/>
 					</div>
 				</div>
-				<Button type='primary' block onClick={handleButton}>
-					{createAdmin ? <a>Create new account</a> : <a>Login as Admin</a>}
-					{/* <a>Login as Admin</a> */}
-				</Button>
-				{/* <Link href='/createAdmin'> */}
-				{/* </Link> */}
+				{/* <Button type='primary' loading={loading} block onClick={handleButton}>
+					{createAdmin ? 'Create new account' : 'Login as Admin'}
+				</Button> */}
+				{createAdmin ? (
+					<Button type='primary' disabled={disabled || loading} block onClick={handleButton}>
+						Sign Up
+					</Button>
+				) : (
+					<Button type='primary' disabled={disabled} loading={loading} block onClick={handleButton}>
+						Sign In
+					</Button>
+				)}
+				// remember me
 				{createAdmin ? (
 					<a onClick={() => setCreateAdmin(!createAdmin)}>Sign In as Admin</a>
 				) : (
